@@ -1,0 +1,12 @@
+google-adk==2.8.0
+litellm>=1.84
+python-dotenv
+pydantic
+pyyaml
+pytest
+pytest-asyncio
+fastapi==0.141.1
+uvicorn==0.52.4
+sqlalchemy==2.0.52
+aiosqlite==0.22.1
+mcp==1.29.1
