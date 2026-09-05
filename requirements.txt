@@ -2,7 +2,6 @@ google-adk==2.8.0
 litellm>=1.84
 python-dotenv
 pydantic
-pyyaml
 pytest
 pytest-asyncio
 fastapi==0.141.1

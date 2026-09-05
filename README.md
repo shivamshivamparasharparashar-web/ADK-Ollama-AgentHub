@@ -36,7 +36,7 @@ The following implementation phases have been completed and verified:
 
 The project has been developed incrementally with explicit scope control.
 
-Git setup is intentionally deferred until the project work is complete.
+Git is initialized on the main branch and the initial project baseline has been committed.
 
 ---
 
@@ -259,7 +259,6 @@ ADK-Ollama-AgentHub/
 +-- config/
 |   +-- .env
 |   +-- .env.example
-|   +-- settings.yaml
 |
 +-- data/
 |   +-- adk_sessions.db
@@ -274,7 +273,6 @@ ADK-Ollama-AgentHub/
 +-- logs/
 |   +-- agent.log
 |
-+-- scripts/
 |
 +-- tests/
 |   +-- unit/
@@ -347,7 +345,6 @@ google-adk
 litellm
 python-dotenv
 pydantic
-pyyaml
 pytest
 pytest-asyncio
 fastapi
@@ -444,19 +441,6 @@ The repository currently contains configuration files in multiple locations. Tre
 
 ---
 
-# 14. YAML Configuration
-
-The repository also contains:
-
-```text
-config/settings.yaml
-```
-
-This file is part of the project configuration area.
-
-Environment variables and YAML configuration should not be assumed to be interchangeable. Changes to configuration precedence should be made deliberately.
-
----
 
 # 15. `pyproject.toml`
 
@@ -925,9 +909,9 @@ The project contains:
 
 ```text
 tests/
-├── unit/
-├── integration/
-└── e2e/
+â”œâ”€â”€ unit/
+â”œâ”€â”€ integration/
+â””â”€â”€ e2e/
 ```
 
 Run the complete suite:
@@ -1163,25 +1147,6 @@ Do not delete or consolidate ADK runtime files merely because they appear duplic
 
 ---
 
-# 43. Configuration Files
-
-Current project configuration areas include:
-
-```text
-.env
-app/.env
-config/.env
-config/.env.example
-config/settings.yaml
-```
-
-Because multiple environment files exist in the current development tree, configuration precedence must be understood before making cleanup/consolidation changes.
-
-Do not assume all `.env` files are loaded simultaneously.
-
-The application's actual configuration-loading behavior should be treated as authoritative.
-
----
 
 # 44. Security Guidelines
 
@@ -1416,20 +1381,20 @@ pytest -q
 
 A typical development session:
 
-### Terminal 1 — Ollama
+### Terminal 1 â€” Ollama
 
 ```powershell
 ollama serve
 ```
 
-### Terminal 2 — MCP when MCP testing is required
+### Terminal 2 â€” MCP when MCP testing is required
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 python -m app.mcp.server
 ```
 
-### Terminal 3 — API when API testing is required
+### Terminal 3 â€” API when API testing is required
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
@@ -1617,7 +1582,7 @@ These documents provide implementation-specific history and verification details
 
 ---
 
-# 53. Phase 6 — API Tools
+# 53. Phase 6 â€” API Tools
 
 Phase 6 introduced bounded generic HTTP API tools.
 
@@ -1635,7 +1600,7 @@ The implementation includes limits and safe error handling.
 
 ---
 
-# 54. Phase 7 — MCP
+# 54. Phase 7 â€” MCP
 
 Phase 7 introduced local MCP integration.
 
@@ -1659,7 +1624,7 @@ multiply_numbers
 
 ---
 
-# 55. Phase 8 — Multi-Agent Architecture
+# 55. Phase 8 â€” Multi-Agent Architecture
 
 Phase 8 introduced:
 
@@ -1678,7 +1643,7 @@ The root agent does not directly own the specialist domain tools.
 
 ---
 
-# 56. Phase 9 — FastAPI
+# 56. Phase 9 â€” FastAPI
 
 Phase 9 introduced:
 
@@ -1703,7 +1668,7 @@ Verified endpoints:
 
 ---
 
-# 57. Phase 10 — Persistent ADK Sessions
+# 57. Phase 10 â€” Persistent ADK Sessions
 
 Phase 10 introduced persistent ADK sessions using:
 
