@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from litellm import acompletion
 from mcp.server.fastmcp import FastMCP
+
+from app.config import settings
 
 
 mcp = FastMCP(
@@ -39,6 +42,35 @@ def add_numbers(a: float, b: float) -> float:
 def multiply_numbers(a: float, b: float) -> float:
     """Multiply two numbers."""
     return a * b
+
+
+@mcp.tool()
+async def ask_question(question: str) -> dict[str, str]:
+    """Answer a question independently using the configured Ollama LLM."""
+    if not question.strip():
+        raise ValueError("question must not be empty.")
+
+    response = await acompletion(
+        model=f"ollama_chat/{settings.OLLAMA_MODEL}",
+        messages=[
+            {
+                "role": "user",
+                "content": question,
+            }
+        ],
+        api_base=settings.OLLAMA_API_BASE,
+    )
+
+    answer = response.choices[0].message.content
+
+    if not answer:
+        raise RuntimeError("The LLM returned an empty response.")
+
+    return {
+        "question": question,
+        "answer": answer,
+        "model": settings.OLLAMA_MODEL,
+    }
 
 
 if __name__ == "__main__":
